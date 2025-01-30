@@ -1,7 +1,7 @@
-# PeepSeek 🐦
+# PeepSeek
 
 <div align="center">
-  <img src="assets/logo.svg" width="200" height="200" alt="PeepSeek Logo">
+  <img src="assets/peepseek-logo.jpg" width="600" alt="PeepSeek">
 </div>
 
 A sophisticated Solana memecoin analysis agent powered by DeepSeek's foundational logic. PeepSeek aggregates data from multiple sources to provide comprehensive insights into memecoin performance, risks, and market sentiment.
