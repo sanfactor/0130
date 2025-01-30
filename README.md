@@ -29,33 +29,44 @@ A sophisticated Solana memecoin analysis agent powered by DeepSeek's foundationa
 
 ```mermaid
 graph TD
+    classDef sourceNode fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef collectorNode fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef engineNode fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef vizNode fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    
     A[Data Sources] --> B[Data Collectors]
     B --> C[Analysis Engine]
     C --> D[Visualization]
     
-    subgraph Data Sources
-        A1[Jupiter API]
-        A2[Metadrop API]
-        A3[Pumpfun API]
+    subgraph "Data Sources"
+        A1[Jupiter API]:::sourceNode
+        A2[Metadrop API]:::sourceNode
+        A3[Pumpfun API]:::sourceNode
     end
     
-    subgraph Data Collectors
-        B1[JupiterCollector]
-        B2[MetadropCollector]
-        B3[PumpfunCollector]
+    subgraph "Data Collectors"
+        B1[JupiterCollector]:::collectorNode
+        B2[MetadropCollector]:::collectorNode
+        B3[PumpfunCollector]:::collectorNode
     end
     
-    subgraph Analysis Engine
-        C1[Risk Analysis]
-        C2[Sentiment Analysis]
-        C3[Price Analysis]
+    subgraph "Analysis Engine"
+        C1[Risk Analysis]:::engineNode
+        C2[Sentiment Analysis]:::engineNode
+        C3[Price Analysis]:::engineNode
     end
     
-    subgraph Visualization
-        D1[Price Trends]
-        D2[Liquidity Charts]
-        D3[Risk Gauges]
+    subgraph "Visualization"
+        D1[Price Trends]:::vizNode
+        D2[Liquidity Charts]:::vizNode
+        D3[Risk Gauges]:::vizNode
     end
+
+    linkStyle default stroke:#0066FF,stroke-width:2px
+    style A fill:#f8f9fa,stroke:#0066FF,stroke-width:3px
+    style B fill:#f8f9fa,stroke:#0066FF,stroke-width:3px
+    style C fill:#f8f9fa,stroke:#0066FF,stroke-width:3px
+    style D fill:#f8f9fa,stroke:#0066FF,stroke-width:3px
 ```
 
 ## Installation
