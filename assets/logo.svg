@@ -1,6 +1,27 @@
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <path d="M100 50 C130 50, 150 70, 150 100 C150 130, 130 150, 100 150 C70 150, 50 130, 50 100 C50 70, 70 50, 100 50" fill="#0066FF" />
-  <circle cx="120" cy="90" r="5" fill="white" />
-  <path d="M140 95 L160 100 L140 105 Z" fill="#0066FF" />
-  <path d="M90 100 C100 80, 120 80, 130 100" stroke="#0066FF" stroke-width="8" fill="none" />
+  <!-- Main bird body -->
+  <path d="M60 100 
+           C60 70, 90 50, 120 50
+           L150 50
+           C160 50, 160 60, 150 70
+           L140 80
+           C170 90, 170 120, 140 140
+           C110 160, 80 150, 60 130
+           C40 110, 40 90, 60 100 Z" 
+        fill="#0066FF"/>
+  
+  <!-- Eye -->
+  <circle cx="130" cy="70" r="6" fill="white"/>
+  
+  <!-- Wing detail -->
+  <path d="M90 90
+           C110 85, 130 90, 140 100
+           C120 95, 100 95, 90 90 Z"
+        fill="#0052CC"/>
+  
+  <!-- Tail feathers -->
+  <path d="M60 130
+           C80 140, 90 150, 85 160
+           C75 150, 65 140, 60 130 Z"
+        fill="#0052CC"/>
 </svg>
