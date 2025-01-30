@@ -47,14 +47,20 @@ async def test_memecoin_analyzer(mock_jupiter_collector, mock_metadrop_collector
     )
     token_address = "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"
     
-    analysis = await analyzer.analyze_token(token_address)
+    analysis, visualizations = await analyzer.analyze_token(token_address)
     
     assert isinstance(analysis, dict)
+    assert isinstance(visualizations, dict)
     assert 'price_data' in analysis
     assert 'liquidity_data' in analysis
     assert 'risk_score' in analysis
     assert 'market_sentiment' in analysis
     assert 'recommendations' in analysis
+    
+    assert 'price_trends' in visualizations
+    assert 'liquidity_comparison' in visualizations
+    assert 'risk_assessment' in visualizations
+    assert all(isinstance(v, bytes) for v in visualizations.values())
     
     # Verify price data structure
     assert all(source in analysis['price_data'] for source in ['jupiter', 'metadrop', 'pumpfun'])

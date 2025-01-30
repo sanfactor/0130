@@ -1,6 +1,7 @@
-from typing import Dict, List
+from typing import Dict, List, Tuple
 import asyncio
 from ..data_collectors import JupiterCollector, MetadropCollector, PumpfunCollector
+from ..visualization import MemecoinPlotter
 
 class MemecoinAnalyzer:
     def __init__(self, jupiter_collector=None, metadrop_collector=None, pumpfun_collector=None):
@@ -9,8 +10,9 @@ class MemecoinAnalyzer:
             'metadrop': metadrop_collector or MetadropCollector(),
             'pumpfun': pumpfun_collector or PumpfunCollector()
         }
+        self.plotter = MemecoinPlotter()
     
-    async def analyze_token(self, token_address: str) -> Dict:
+    async def analyze_token(self, token_address: str) -> Tuple[Dict, Dict[str, bytes]]:
         tasks = []
         for name, collector in self.collectors.items():
             tasks.extend([
@@ -22,13 +24,24 @@ class MemecoinAnalyzer:
         results = await asyncio.gather(*tasks)
         data = self._process_results(results)
         
-        return {
+        analysis_results = {
             'price_data': self._analyze_price_data(data),
             'liquidity_data': self._analyze_liquidity_data(data),
             'risk_score': self._calculate_risk_score(data),
             'market_sentiment': self._calculate_market_sentiment(data),
             'recommendations': self._generate_recommendations(data)
         }
+        
+        visualizations = {
+            'price_trends': self.plotter.plot_price_trends(analysis_results['price_data']),
+            'liquidity_comparison': self.plotter.plot_liquidity_comparison(analysis_results['liquidity_data']),
+            'risk_assessment': self.plotter.plot_risk_assessment(
+                analysis_results['risk_score'],
+                analysis_results['market_sentiment']
+            )
+        }
+        
+        return analysis_results, visualizations
     
     async def _fetch_data(self, coro, name: str) -> Dict:
         try:
