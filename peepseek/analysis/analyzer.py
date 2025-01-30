@@ -3,11 +3,11 @@ import asyncio
 from ..data_collectors import JupiterCollector, MetadropCollector, PumpfunCollector
 
 class MemecoinAnalyzer:
-    def __init__(self):
+    def __init__(self, jupiter_collector=None, metadrop_collector=None, pumpfun_collector=None):
         self.collectors = {
-            'jupiter': JupiterCollector(),
-            'metadrop': MetadropCollector(),
-            'pumpfun': PumpfunCollector()
+            'jupiter': jupiter_collector or JupiterCollector(),
+            'metadrop': metadrop_collector or MetadropCollector(),
+            'pumpfun': pumpfun_collector or PumpfunCollector()
         }
     
     async def analyze_token(self, token_address: str) -> Dict:
